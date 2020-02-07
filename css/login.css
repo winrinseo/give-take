@@ -1,0 +1,38 @@
+html { background-attachment: fixed; }
+body#login { margin: 0; padding: 0; }
+/*아이디 비번 바 수정 */ 
+ 
+#userid, #passwd,#id1,#id2 { border:none; width: 100%;  height: 43px; line-height: 43px; display: block; font-size: 14px; font-weight: bold; vertical-align: middle; margin-bottom: 5px; border-radius:4px;     background: rgba(50,50,50,0.5); color: #fff; transition:0.2s;     border: 1px solid #000;      box-shadow: inset 0 3px 5px rgba(0,0,0,0.4);
+text-align: center;
+ }
+
+
+
+
+
+#passwd,#id1,#id2 { margin-bottom: 15px;}
+#userid:focus, #passwd:focus, #id1:focus,#id2:focus {  color: #ff0000; border: solid 1px #ff0000; outline: none;}
+#login-btn, #join-btn {  cursor: pointer; vertical-align: middle; display: block; padding:0; opacity: 0.7;}
+#login-btn {width: 100%; height: 52px; line-height: 50px; margin-bottom: 5px; }
+#join-btn { width: 318px; height: 50px; line-height: 50px; text-align:center;  text-decoration:none; }
+
+
+
+#login-btn:hover, #join-btn:hover {  bottom: 39px !important; top:inherit; opacity:1.0;}
+
+/* 로그인테두리*/
+#login-content { position: relative; width: 320px; margin: 15% auto 0px auto; padding:20px; border-radius:5px;  font-size:12px; background: rgba(0,0,0,0.5) }
+
+
+#frm { width: 320px;  margin: 0px auto 0 auto; position: relative;   }
+.logo_intro { display: block; margin: 200px auto 0 auto; z-index: 99999; position: relative;}
+.login-txt01 { line-height: 22px; text-align: center; display: block; font-weight: bold; padding-bottom: 20px;}	
+	.login-txt02 { line-height: 22px; text-align: center; display: block; font-weight: bold; padding-top: 20px; padding-bottom: 10px; border-top: solid 1px #ccc; margin-top: 20px;}	
+label { position: absolute; left: 50px; margin-top: 13px; }
+label .fa { font-size: 20px; color: #666; }
+.qna-board { display:block; margin:20px auto; text-align:center; color:#fff; text-decoration:none; }
+
+
+
+#join1-btn { width: 100px; height: 40px; line-height: 25px; text-align:center;  text-decoration:none; }
+#join1-btn:hover {  bottom: 39px !important; top:inherit; opacity:1.0;}

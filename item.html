@@ -1,0 +1,109 @@
+<?php
+session_start();
+include "./php/db.php";
+
+$num = $_GET[num];
+$sql = "select * from trade where num = '$num';";
+$result = mysql_query($sql, $connect);
+$row = mysql_fetch_assoc($result);
+
+
+$page = $_GET[page];
+if(!$page) $page = 1;
+$scale = 15;
+
+
+//echo $row[board];
+//exit;
+
+?>
+
+<html lang="ko"><head>
+        <title>제목</title>
+        <meta charset="UTF-8">
+
+        <link type="text/css" rel="stylesheet" href="./css/item.css?v=190924">
+     <link rel="stylesheet"  type="text/css" href="./css/button.css?3"> 
+    </head>
+    <body>
+    <div class="g_container" id="g_CONTENT">
+    <div class="g_content">
+        <div class="g_title_blue">
+            팝니다
+            <ul class="g_path">
+                <li>홈</li>
+                <li class="select">팝니다</li>
+            </ul>
+        </div>
+        <a name="top"></a>
+        <form name="item" method="POST" id="item" action="/php/item.php">
+            <div class="g_subtitle">물품정보</div>
+            <table class="g_blue_table">
+                <colgroup>
+                    <col width="160">
+                    <col width="250">
+                    <col width="160">
+                    <col>
+                </colgroup>
+                <tbody><tr>
+                    <th>카테고리</th>
+                    <td colspan="3"><?php echo $row[category]; ?> </td>
+                </tr>
+                <tr>
+                    <th>물품제목</th>
+                    <td colspan="3">
+                     <?php echo $row[title]; ?>
+                    </td>
+                </tr>
+
+                 <tr>
+
+                    <th>등록일시</th>
+                    <td><?php echo $row[date]; ?> </td>
+					<th>거래상태</th>
+                    <?php if( $row[end] == 0){ ?><td> <font color="red">  판매중 </font>  </td> 
+					<?} else {?>
+					<td><font color="blue"> 판매완료 </td> </font><?}?>
+                </tr>
+
+                <tr>
+                    <th>희망가격</th>
+                    <td> <?php echo $row[amount]; ?></td>
+					<th>거래번호</th>
+                    <td> <?php echo $row[num]; ?></td>
+					<input type="hidden" name="A" value=" <?php echo $row[num]; ?>">
+
+
+                    </tr>
+                
+            </tbody>
+			
+        </table>
+        
+
+        
+
+        <div class="g_subtitle">내용</div>
+        <div class="box6 trade_fraud" id="trade_fraud">
+            <?php echo $row[content]; ?>
+
+        </div>
+
+<center>
+		<?php if($_SESSION[userid] == $row[tid] && $row[end] == 0){ ?>
+				<button id="login-btn" type="submit"  border="0" class="ui_btn_red">거래완료</button>
+				<? } ?>
+				<?php if($_SESSION[userid] == $row[tid] && $row [end] == 1){ ?>
+		        <a href="./php/cancel.php?num=<?=$row[num]?>" id="login-btn" type="submit"  border="0" class="ui_btn_red">거래철회</a>
+		        <? } ?>
+
+				<a onclick="history.back()" id="login-btn"   border="0" class="ui_btn_gray">뒤로가기</a>
+</form>
+</center>
+        
+		</div>
+    </div>
+</div>
+
+</body>
+</html>

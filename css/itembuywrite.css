@@ -1,0 +1,21 @@
+btn_buy_okbtn_buy_okbtn_buy_okbtn_buy_ok.aside .title_green{ padding:10px 0; background-color:#39A742; text-align:center; color:#FFF; font-size:16px; }
+
+
+
+.g_green_table td{ line-height:20px; }
+.g_green_table input[type=text]:focus{ background-color:#FEFEEC; }
+
+.coms_area{ display:none; position:absolute; top:10px; right:0; }
+.g_txtbtn{ display:inline-block; padding:0px 5px; border:1px solid #9B9B9B; background-color:#FCFCFC; font-size:11px; cursor:pointer; }
+.g_txtbtn:hover{ border-color:#39A742; color:#39A742; }
+.g_txtbtn.first_btn{ margin-left:10px }
+
+
+
+
+
+
+
+.g_btn_wrap .buy_reg{ display:inline-block; width:137px; height:46px; background:url(../img/btn_buy_ok.gif) no-repeat; text-indent:-9999px; vertical-align:middle; }
+.g_btn_wrap .buy_re_reg{ display:inline-block; width:137px; height:46px; background:url(../img/btn_buy_ok.gif) no-repeat; text-indent:-9999px; vertical-align:middle; }
+.g_btn_wrap .cancel_reg{ display:inline-block; width:137px; height:46px; background:url(../img/btn_cancel.gif) no-repeat; text-indent:-9999px; vertical-align:middle; }

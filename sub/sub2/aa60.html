@@ -1,0 +1,345 @@
+<?php
+
+include "../php/db.php";
+
+$search= $_GET[min];
+$search1= $_GET[max];
+$search2= $_GET[so]; //category
+$search3= $_GET[gu]; //group1
+$search4= $_GET[title];
+
+$page=$_GET[page];
+
+if(!$page) $page = 1;
+
+$scale = 17;   // 한 페이지 크기    = 5  
+
+//최소금액,지역,소분류 입력안했고 최대금액만 입력했을시
+if($search =="" && $search1 !="" && $search2 =="" && $search3 =="" && $search4 =="")  
+$sql =  "select * from trade  where  amount <= {$search1}   order by num desc;";
+
+//최소금액,지역,제목 입력안했고 최대금액,소분류 입력했을시
+if($search =="" && $sarch1 !="" && $search2 != "" && $search3 == ""  && $search4 =="") 
+$sql =  "select * from trade  where  amount <= {$search1} and category = {$search2}  order by num desc;";
+
+//최소금액,지역 입력안했고 최대금액,소분류,제목 입력했을시
+if($search =="" && $sarch1 !="" && $search2 != "" && $search3 == ""  && $search4 !="") 
+$sql =  "select * from trade  where  amount <= {$search1} and category = {$search2}  and title = {search4} order by num desc;";
+
+//최소금액,소분류,제목 입력안했고 최대금액,지역 입력했을시
+if($search =="" && $search1 !="" && $search2 == "" && $search3 != ""  && $search4 =="")  
+$sql =  "select * from trade  where  amount <= {$search1} and group1 = {$search3} order by num desc;";
+
+//최소금액,소분류 입력안했고 최대금액,지역,제목 입력했을시
+if($search =="" && $search1 !="" && $search2 == "" && $search3 != "" && $search4 !="")  
+$sql =  "select * from trade  where  amount <= {$search1} and group1 = {$search3}  and title = {search4} order by num desc;";
+
+//최소금액,소분류,지역 입력안했고 최대금액,제목 입력했을시
+if($search =="" && $search1 !="" && $search2 == "" && $search3 == "" && $search4 !="")  
+$sql =  "select * from trade  where  amount <= {$search1}  and title = {search4} order by num desc;";
+
+//최소금액 입력안했고 나머지 모두 입력했을시
+if($search =="" && $search1 !="" && $search2 != "" && $search3 != "" && $search4 !="")
+$sql =  "select * from trade  where  amount <= {$search1} and category = {$search2} and group1 = {$search3} and title = {search4} order by num desc;";
+
+
+
+
+
+//최대금액 입력안했을시
+if($search1 =="" && $search2 =="" && $search !="" && $search3 == ""  && $search4 =="") $sql = "select * from trade  where  amount >= {$search}    order by num desc;";
+//최소금액,카테고리 입력했을시
+if($search1 =="" && $search2 != "" && $search !="" && $search3 == ""  && $search4 =="") $sql = "select * from trade  where  amount >= {$search}   and category = {$search2} order by num desc;";
+
+
+
+
+//최소,최대금액 입력했을시
+if($search1 !="" && $search !="" && $search2 =="" && $search3 == ""  && $search4 =="") $sql = "select * from trade  where  {$search} <= amount and  amount <= {$search1} order by num desc;";
+
+//최소,최대금액,카테고리 입력했을시
+if($search1 !="" && $search !="" && $search2 != "" && $search3 == ""  && $search4 =="") $sql = "select * from trade  where  {$search} <= amount and  amount <= {$search1} and category = {$search2} order by num desc;";
+
+//최소,최대금액,지역 입력했을시
+if($search1 !="" && $search !="" && $search3 != "" && $search2 == ""  && $search4 =="") $sql = "select * from trade  where  {$search} <= amount and  amount <= {$search1}  and group1 = {$search3} order by num desc;";
+
+//최소,최대금액,제목 입력했을시
+if($search1 !="" && $search !="" && $search4 != "" && $search3 == ""  && $search2 =="") $sql = "select * from trade  where  {$search} <= amount and  amount <= {$search1}  and title like '%$search4%' order by num desc;";
+
+//최소,최대금액,제목,지역 입력했을시
+if($search1 !="" && $search !="" && $search4 != "" && $search3 != "" && $search2 == "") $sql = "select * from trade  where  {$search} <= amount and  amount <= {$search1}  and group1 = {$search3} and title like '%$search4%' order by num desc;";
+
+//최소,최대금액,제목,카테고리 입력했을시
+if($search1 !="" && $search !="" && $search4 != "" && $search2 != "" && $search3 == "") $sql = "select * from trade  where  {$search} <= amount and  amount <= {$search1}  and title like '%$search4%' and category = {$search2} order by num desc;";
+
+//최소,최대금액,지역,카테고리 입력했을시
+if($search1 !="" && $search !="" && $search3 != "" && $search2 != "" && $search4 =="") $sql = "select * from trade  where  {$search} <= amount and  amount <= {$search1}  and group1 = {$search3} and category = {$search2} order by num desc;";
+
+//최소,최대금액,제목,지역,카테고리 입력했을시
+if($search1 !="" && $search !="" && $search4 != "" && $search3 != "" && $search2 != "") $sql = "select * from trade  where  {$search} <= amount and  amount <= {$search1} and category = {$search2} and group1 = {$search3} and title like '%$search4%' order by num desc;";
+
+
+
+
+//다입력안하고 출력
+if($search1 =="" && $search =="" && $search2 =="") $sql = "select * from trade where category = '0712' order by num desc;";
+
+//카테고리만 입력했을시
+if($search1 =="" && $search =="" && $search2 != "") $sql = "select * from trade where category = {$search2} order by num desc;";
+
+//지역만 입력했을시
+if($search1 =="" && $search =="" && $search3 != "") $sql = "select * from trade  where group1 = {$search3} order by num desc;";
+
+//제목만 입력했을시
+if($search4 !="" && $search =="" && $search1 =="" && $search2 =="" && $search3 =="" ) 
+$sql = "select * from trade  where title like '%$search4%' order by num desc;";
+
+//카테고리,지역 입력했을시
+if($search1 =="" && $search =="" && $search2 != "" && $search3 != "") $sql = "select * from trade where category = {$search2} and group1 = {$search3} order by num desc;";
+
+//카테고리,제목 입력했을시
+if($search1 =="" && $search =="" && $search2 != "" && $search4 !="") $sql = "select * from trade where category = {$search2} and title like '%$search4%' order by num desc;";
+
+//지역, 제목입력했을시
+if($search1 =="" && $search =="" && $search3 != "" && $search4 !="") $sql = "select * from trade  where group1 = {$search3} and title like '%$search4% order by num desc;";
+
+//카테고리,지역,제목 입력했을시
+if($search1 =="" && $search =="" && $search2 != "" && $search4 !="" && $search3 != "") $sql = "select * from trade where category = {$search2} and group1 = {$search3} and title like '%$search4%' order by num desc;";
+
+
+
+$result = mysql_query($sql , $connect);
+
+$total_record= mysql_num_rows($result); 
+
+if($total_record % $scale ==0)	
+$total_page = floor($total_record/$scale);        
+else
+$total_page = floor($total_record/$scale) + 1;   // 나머지가 있을경우 총페이지 + 1    ex) 6/5  =  1.1 + 1     총페이지=2
+
+$start=($page-1) * $scale;    // 페이지-1 * 한페이지 크기  = 시작페이지  ex) 2페이지 - 1  * 5   =  5
+$number=$total_record - $start; // 총페이지 - 시작점  = 번호      ex)6개 게시글기준  6 - 5 = 1      2페이지에 1번 게시글 
+
+$b_pageNum_list = 5;
+$block = ceil($page/$b_pageNum_list);
+$b_start_page = ( ($block - 1) * $b_pageNum_list ) + 1;
+$b_end_page = $b_start_page + $b_pageNum_list - 1; 
+?>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>카테고리</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/cat.css">
+	<link rel="stylesheet" type="text/css" href="../css/board.css">
+	<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Nanum+Gothic|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Noto+Serif+KR|Poiret+One|Roboto+Mono|Tangerine&display=swap&subset=korean" 
+	rel="stylesheet">
+
+	<style>
+		 
+		
+		/* 마이페이지 스타일 */
+		ul,li,ol,dl,dd,dt { padding:0; margin:0; }
+		dd { font-family:돋움, Dotum, 굴림, Gulim, Arial, sans-serif, Verdana, Helvetica, geneva; font-size:12px; color:#333; }
+		a{ text-decoration:none; }
+		ul,li,ol,dl,dd,dt{ list-style:none; }
+		#login_menu ul li{ float:left; width:100px; color:#fff; text-align:center; }
+		#login_menu ul li dl.dropdown{ border:3px #ccc solid; background:#FFC; display:none; }
+		#login_menu ul li dl.dropdown dd{height:30px; line-height:30px; border-bottom:1px #ccc solid; }
+		#login_menu ul li dl.dropdown a{ color:#333;  padding:0 0px; }
+		#login_menu ul li dl.dropdown a:hover{ background:#F60; color:#fff; }
+		
+		#login_menu ul li.menu3:hover .dropdown{ display:block; }
+   
+.pagination{display:-ms-flexbox;display:flex;padding-left:0;list-style:none;border-radius:.25rem}.page-link{position:relative;display:block;padding:.5rem .75rem;margin-left:-1px;line-height:1.25;color:#007bff;background-color:#fff;border:1px solid #dee2e6}.page-link:hover{z-index:2;color:#0056b3;text-decoration:none;background-color:#e9ecef;border-color:#dee2e6}.page-link:focus{z-index:2;outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25)}.page-item:first-child .page-link{margin-left:0;border-top-left-radius:.25rem;border-bottom-left-radius:.25rem}.page-item:last-child .page-link{border-top-right-radius:.25rem;border-bottom-right-radius:.25rem}.page-item.active .page-link{z-index:1;color:#fff;background-color:#007bff;border-color:#007bff}
+
+.justify-content-end{-ms-flex-pack:end!important;justify-content:flex-end!important}.justify-content-center{-ms-flex-pack:center!important;justify-content:center!important}
+
+
+    </style>
+    	
+
+
+</head>
+
+
+<body>
+
+<div id="mid_con">
+						<h2>게임<h2><hr>
+						
+					<div>
+
+					<div class="item">
+						<!--중앙 상품정렬 시작-->
+						<table class="board" id="Board">
+						<tr>
+							<th>번호</th>
+							<th>분류</th>
+							<th>지역</th>
+							<th>카테</th>
+							<th style="width:350px;">제목</th>
+							<th>아이디</th>
+							<th>날짜</th>
+						</tr>
+
+
+						 <?php
+  $i = 1;
+// while($row = mysql_fetch_assoc($result)){
+	for($i=$start; $i<$start+$scale && $i<$total_record; $i++)
+	{
+		mysql_data_seek($result, $i);     // 가져올 레코드로 위치 이동
+		$row = mysql_fetch_array($result);  // 하나의 레코드 가져오기
+?>	
+
+
+
+
+							<!-- 반복문 삽입은 여기-->
+						<tr >
+							<td><?php echo $row[num]; ?></td>
+
+							<?php if($row[end]==0 && $row[sell] == 1) { ?>
+							<td > <font color="red">판매중</td> </font>
+							<? } 
+							else if($row[end]==1 && $row[sell] == 1) {?>
+							<td><font color="blue">판매완료</td> </font>
+							<?}
+							else if($row[end]==0 && $row[sell] == 2) {?>
+							<td><font color="red"> 구매중</td></font>
+							<?}
+							else if($row[end]==1 && $row[sell] ==2) {?>
+							<td><font color="blue">구매완료</td></font>
+							<?}?>
+
+
+
+
+							<td><?php echo $row[group1]; ?></td>
+							<td><?php echo $row[category]; ?></td>
+							 <td style="cursor: pointer">
+							<?php if($row[sell] ==2){?>
+
+							<!-- <a onclick="pop100()">  --> 
+							<a href="../itembuy.html?num=<?php echo $row[num];?>">  <?php }
+							else { ?>
+
+							<!-- <a onclick='pop200()'> -->
+							<a href="../item.html?num=<?php echo $row[num];?>">
+							<?php }
+							?>
+
+							<script>
+
+							function pop100()//팝업테스트
+							{
+							window.open("../itembuy.html?num=<?php echo $row[num];?>","테스트","width=900, height=820, left=550, top=240");
+							}
+							function pop200()//팝업테스트
+							{
+							window.open("../item.html?num= <?php echo $row[num];?>","테스트","width=900, height=820, left=550, top=240");
+							}
+							</script>
+
+							<?php echo $row[title]; ?></a></td>
+							<td><?php echo $row[tid]; ?></td>
+							<td><?php echo $row[date]; ?></td>
+						</tr>
+							
+							
+								<?php
+	
+}
+?>
+						</table>
+						<!--중앙 상품정렬 끝-->
+						<div class="load">
+							
+							<div class="pagination  justify-content-center">
+
+
+							<ul> 
+
+
+<?php if ($b_end_page > $total_page)  
+
+$b_end_page = $total_page; ?>
+
+
+
+
+		<?	  if($page <= 1){?>
+        <li class="page-item active"> <span class="page-link"> 처음</span> </li>
+        <?}else{?>
+          <li>  <span class="page-link"><a href="../sub/a.html?page=&list=<?=$list?>">처음 </span></a></li>
+        <?} ?>
+
+ 
+		<? if($block <=1){?>
+        
+		 <?}else{?>
+        <li><span class="page-link"><a href="../sub/a.html?page=<?=$b_start_page-1?>">이전</a></span></li>
+		<?} ?>
+
+
+
+
+
+
+
+	 <? 
+		for($j = $b_start_page; $j <=$b_end_page; $j++) { 
+			if($page == $j) {
+				echo '<li class="page-item active"><span class="page-link">'.$j.'</span></li>';
+			} else { 
+				
+				echo '<li class="page-item"><a class="page-link" href="../sub/a.html?page='.$j.'">'.$j.'</a></li>';
+
+			}	
+		} 
+	?>
+
+
+
+
+
+
+    <? $total_block = ceil($total_page/$b_pageNum_list); 
+ 
+    if($block >= $total_block)  { ?>
+    
+    <?}else{?>    
+        <li> <span class="page-link"> <font size=2><a href="../sub/a.html?page=<?=$b_end_page+1?>">다음</a></span> </li>
+    <?} ?>
+
+
+
+
+	<? if($page >= $total_page){?>
+ 
+            <li class="page-item active"><span class="page-link">마지막</span></li>
+        
+        <?}else{?>
+            <li ><span class="page-link"><a href="../sub/a.html?page=<?=$total_page?>">마지막</span></a></li>
+ 
+        <?}
+    ?>
+
+
+ 
+
+
+							</ul>
+							</div>
+							</div>
+						</div>
+            		</div>
+
+</body>
+</html>

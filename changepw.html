@@ -1,0 +1,103 @@
+
+<?php session_start(); ?>
+<html  class="myAccount-window" >
+	<head>
+    <meta charset="utf-8">
+    <title>비밀번호 변경</title>
+
+    <link rel="stylesheet" href="./css/sub.css">
+  
+</head>
+<body  class="app ng-scope" >
+
+<!-- ngIf: !viewOptions.hideHeader -->
+
+<div class="main-container my-account-view-mode">
+    <div ng-controller="LangController" class="ng-scope"></div>
+    <!-- uiView:  --><section ui-view="" id="content" class="content-container animate-fade-up ng-scope"><div class="page myAccount ng-scope">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="myAccount-title ng-binding">내 정보</span>
+
+            <div class="pull-right player-info">
+                <label class="ng-binding">ID:</label>
+                <span class="username">
+                    <span class="userIcon"></span>
+                    <span class="userRealName ng-binding">
+                        <?= $_SESSION[userid] ?> <!-- 세션 아이디출력하세요 -->
+                    </span>
+                </span>
+            </div>
+        </div>
+ 
+
+            <!--tabs content start here-->
+            <!-- uiView:  --><div class="tab-content ng-scope" ui-view=""><div class="inner-tabs ng-scope">
+    <ul class="nav nav-tabs">
+        <li  class="">
+            <a href="changeinfo.html" class="ng-binding" >개인정보</a>
+        </li>
+        <li class="active">
+            <a href="changepw.html" class="ng-binding" >비밀번호</a>
+        </li>
+<!--        <li ng-class="{'active' : headerMenuViewOptions.activeMenuClass == 'myAccount.myDetails.closeAccount'}">
+            <a ui-sref="myAccount.myDetails.closeAccount">[['myAccount.tab.closeAccount'|translate]]</a>
+        </li>-->
+    </ul>
+    <div class="tab-content">
+       <div ui-view="" class="ng-scope">
+		   
+		   
+		   <form class="form-validation change-password tab-view ng-scope ng-pristine ng-invalid ng-invalid-required ng-invalid-no-match-new-pass" method="POST" action="./php/changepw.php">
+			   
+			   
+			   
+    <div class="border-separator-bottom-to-top padding-bottom-5 overflow-hidden">
+        <strong class="ng-binding">비밀번호 변경</strong>
+    </div>
+    <p class="padding-top-10 padding-bottom-10 ng-binding">최소 6자리에서 최대 32자리의 비밀번호를 영어 알파벳, 숫자 그리고 특수문자를 이용하여 만드실 수 있습니다.</p>
+    <ul>
+        <li>
+            <label class="ng-binding">이전 비밀번호:</label>
+            <span class="label-info">
+                <input type="password" name="oldpw" class="form-control ng-scope ng-pristine ng-invalid ng-invalid-required"  >
+            </span>
+        </li>
+        <li>
+            <label class="ng-binding">새 비밀번호:</label>
+            <span class="label-info">
+            <input type="password" name="changepw1" class="form-control ng-scope ng-pristine ng-invalid ng-invalid-required"  >
+            </span>
+        </li>
+        <li>
+            <label class="ng-binding">비밀번호 확인:</label>
+            <span class="label-info">
+          <input type="password" name="changepw2" class="form-control ng-scope ng-pristine ng-invalid ng-invalid-required"  >
+            </span>
+        </li>
+    </ul>
+    <div class="btn-container">
+        <button type="submit"  class="button btn-next ng-binding">저장</button>
+        </button>
+   
+</form>
+        <a href="index.html"><button type="button" class="button btn-prev ng-binding">취소
+        </button></a>
+
+ </div>
+
+</div>
+    </div>
+</div>
+</div>
+            <!--tabs content end here-->
+        </div>
+    </div>
+</div>
+</section>
+</div>
+
+
+
+
+</body></html>

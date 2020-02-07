@@ -1,0 +1,378 @@
+
+<?php session_start(); ?>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>메인페이지</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/cat.css">
+	<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Nanum+Gothic|Nanum+Gothic+Coding|Nanum+Myeongjo|Nanum+Pen+Script|Noto+Serif+KR|Poiret+One|Roboto+Mono|Tangerine&display=swap&subset=korean" 
+	rel="stylesheet">
+    
+	<script type="text/javascript" src="../sc/area.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../sc/sc.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../sc/main.js" charset="utf-8"></script>
+	<style>
+		 
+		
+		/* 마이페이지 스타일 */
+		ul,li,ol,dl,dd,dt { padding:0; margin:0; }
+		dd { font-family:돋움, Dotum, 굴림, Gulim, Arial, sans-serif, Verdana, Helvetica, geneva; font-size:12px; color:#333; }
+		a{ text-decoration:none; }
+		ul,li,ol,dl,dd,dt{ list-style:none; }
+		#login_menu ul li{ float:left; width:100px; color:#fff; text-align:center; }
+		#login_menu ul li dl.dropdown{ border:3px #ccc solid; background:#FFC; display:none; }
+		#login_menu ul li dl.dropdown dd{height:30px; line-height:30px; border-bottom:1px #ccc solid; }
+		#login_menu ul li dl.dropdown a{ color:#333;  padding:0 0px; }
+		#login_menu ul li dl.dropdown a:hover{ background:#F60; color:#fff; }
+		
+		#login_menu ul li.menu3:hover .dropdown{ display:block; }
+    
+    </style>
+    	
+
+
+</head>
+<script>
+
+function pop3()//로그인 팝업 뛰우기
+{
+	window.open("../login.html","로그인","width=450, height=520, left=750, top=240");
+}
+function pop400()//팝업테스트
+{
+window.open("../test.html","테스트","width=850, height=520, left=550, top=240");
+}
+function pop()//회원가입 팝업 뛰우기
+{
+	window.open("../join.html","회원가입","width=900, height=820, left=550, top=240");
+}
+
+function pop10()//판매글
+{
+	window.open("../itembuywrite.html","판매등록","width=900, height=500, left=550, top=240");	
+}
+function pop20()//구매글
+{
+
+	window.open("../itemwrite.html","회원가입","width=900, height=500, left=550, top=240");
+}
+
+							</script>
+<body>
+    <div id="wraper">
+		
+        
+            
+        <div id="contaner">
+            <div id="top"><!--로고와 로그인, 1대1대화 메뉴를 포함한 탑메뉴-->
+ 				<div id="logo">
+                    <a href="/"><img src="../img/logo.png" /></a>
+                </div>
+				
+				<!-- 10월 2일 드롭다운메뉴 에러부분 -->
+                <div id="login_menu">
+				<ul>
+			<li class="menu3">
+				<a href=""><img src="../img/human.png" /></a>
+				<dl class="dropdown" >
+
+					<?php if($_SESSION[userid] == "") { ?>
+					<dd style="cursor: pointer"><a onclick="pop3()">로그인</a></dd>
+
+
+					<? } else { ?>
+    				<dd style="cursor: pointer"><a href="../changeinfo.html">내정보</a></dd>
+					<dd style="cursor: pointer"><a onclick="pop400()">내가쓴글</a></dd>
+					<dd style="cursor: pointer"><a href="../php/logout.php">로그아웃</a></dd>
+					<? } ?>
+				</dl>
+			</li>
+			<a href="#"><img src="../img/talk.png" /></a>
+				</ul>
+                </div>
+				<!--  ㅡㅡㅡㅡㅡㅡ  -->
+				
+				
+            </div>
+
+            <div id="main"><!--메인컨텐츠-->
+                <div id="r_menu"><!--오른쪽 메뉴 전체-->
+					
+                    <div id="search_box">
+						<form name="form" method="get" method="POST">
+                        <table id="box" border="0">
+                            <tr>
+                                <td style="float: left;">가격대</td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" class="src" name="min" id="min" style="width:80px;" /></td>
+                                <td width="30px" style="text-align:center;">~</td>
+                                <td><input type="text" class="src"  name="max" id="max" style="width:80px;" /></td>
+                            </tr>
+                            <tr>
+                                <td style="float: left;">카테고리</td>
+                            </tr>
+                            <tr>
+                                <!-- 두번째 줄 시작 -->
+                                <td>
+                                    <select name="dea" onchange="firstChange();" style="width:80px;">
+                                        <option value="">선택</option>
+										<option value="">의류/잡화</option>
+										<option value="">뷰티</option>
+										<option value="">레저/자동차</option>
+										<option value="">식품</option>
+										<option value="">생활/건강</option>
+										<option value="">가구/인테리어</option>
+										<option value="">디지털/가전/컴퓨터</option>
+										<option value="">도서/취미/반려동물</option>
+										
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <select name="so" style="width:80px;">
+                                        <option value="">-선택 없음-</option>
+                                    </select>
+                                </td>
+
+                            </tr><!-- 두번째 줄 끝 -->
+                            <tr>
+                                <!-- 세번째 줄 시작 -->
+                                <td>
+                                    <select name="si" onchange="firstChange1();" style="width:80px;" >
+                                        <option value="">선택</option>
+										<option value="">강원도</option>
+										<option value="">경기도</option>
+										<option value="">경상남도</option>
+										<option value="">경상북도</option>
+										<option value="">광주광역시</option>
+										<option value="">대구광역시</option>
+										<option value="">대전광역시</option>
+										<option value="">부산광역시</option>
+										<option value="">서울특별시</option>
+										<option value="">울산광역시</option>
+										<option value="">인천광역시</option>
+										<option value="">전라남도</option>
+										<option value="">전라북도</option>
+										<option value="">제주특별자치도</option>
+										<option value="">충청남도</option>
+										<option value="">충청북도</option>
+                                    </select>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <select name="gu" style="width:80px;">
+                                        <option value="">-선택 없음-</option>
+                                    </select>
+                                </td>
+                            </tr><!-- 세번째 줄 끝 -->
+                            <tr>
+                                <td colspan="3"><input type="text" class="src" id="name" style="width:200px;" /> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><button id="button1" style="width:200px;">검색하기</button> </td>
+                            </tr>
+                        </table>
+						</form>
+                    </div>
+                    <div id="write_btn">
+                    	<? if( $_SESSION[userid] == "" ) { ?>
+						<div class="write_btn1">
+						<img src="../img/if.png">
+						</div>
+						<? } else { ?>
+						<div id=sell>
+                        <input type="button" value="팝니다" onclick="pop10();" class="sell_buy" id=sell1>
+						
+						
+						</div>
+						<div id="buy">
+						<input type="button" value="삽니다" onclick="pop20();" class="sell_buy" id=buy1>
+						</div>
+						<? } ?>
+                    </div>
+					
+                    <div id="cat_menu">
+						
+						
+                        <div class="cat" id="cat1">
+                            <a href="#">
+								
+                                <img src="../img/cat1.png" onmouseover="this.src='../img/cat1(on).png'" onmouseout="this.src='../img/cat1.png'">
+							</a>
+							<div class="cat_detail" id="cat_list1">
+								<ul class="cat_list" >
+									<li><a href="./a.html">여성의류</a></li>
+									<li><a href="./a1.html">남성의류</a></li>
+									<li><a href="./a2.html">쥬얼리</a></li>
+									<li><a href="./a3.html">가방</a></li>
+									<li><a href="./a4.html">언더웨어</a></li>
+									<li><a href="./a5.html">지갑/벨트</a></li>
+									<li><a href="./a6.html">시계</a></li>
+									<li><a href="./a7.html">유아의류</a></li>
+								</ul>
+
+							</div>
+							
+                        </div>
+                        <div class="cat" id="cat2">
+                            <a href="#">
+                                <img src="../img/cat2.png" onmouseover="this.src='../img/cat2(on).png'" onmouseout="this.src='../img/cat2.png'">
+							</a>
+							<div class="cat_detail" id="cat_list2">
+								<ul class="cat_list" >
+									<li><a href="./a8.html">스킨케어</a></li>
+									<li><a href="./a9.html">메이크업</a></li>
+									<li><a href="./a10.html">선케어</a></li>
+									<li><a href="./a11.html">남성화장품</a></li>
+									<li><a href="./a12.html">클렌징/필링</a></li>
+									<li><a href="./a13.html">향수</a></li>
+									
+								</ul>
+
+							</div>
+									
+                            
+                        </div>
+                        <div class="cat" id="cat3">
+                            <a href="#">
+                               <img src="../img/cat3.png" onmouseover="this.src='../img/cat3(on).png'" onmouseout="this.src='../img/cat3.png'">
+                            </a>
+							<div class="cat_detail" id="cat_list3">
+								<ul class="cat_list" >
+									<li><a href="./a14.html">스포츠 의류</a></li>
+									<li><a href="./a15.html">등산/아웃도어</a></li>
+									<li><a href="./a16.html">캠핑</a></li>
+									<li><a href="./a17.html">자동차용품</a></li>
+									<li><a href="./a18.html">자전거</a></li>
+									<li><a href="./a19.html">헬스</a></li>
+									<li><a href="./a20.html">낚시</a></li>
+									<li><a href="./a21.html">수영</a></li>
+									<li><a href="./a22.html">라켓스포츠</a></li>
+								</ul>
+
+							</div>
+                        </div>
+                        <div class="cat" id="cat4">
+                            <a href="#">
+                                <img src="../img/cat4.png" onmouseover="this.src='../img/cat4(on).png'" onmouseout="this.src='../img/cat4.png'">
+                            </a>
+							<div class="cat_detail" id="cat_list4">
+								<ul class="cat_list" >
+									<li><a href="./a23.html">농산</a></li>
+									<li><a href="./a24.html">수산</a></li>
+									<li><a href="./a25.html">축산</a></li>
+									<li><a href="./a26.html">반찬/간편가정식</a></li>
+									<li><a href="./a27.html">김치</a></li>
+									<li><a href="./a28.html">가공식품</a></li>
+									<li><a href="./a29.html">커피/생수/음료</a></li>
+									<li><a href="./a30.html">과자/간식</a></li>
+									<li><a href="./a31.html">즉석식품</a></li>
+									<li><a href="./a32.html">건강식품</a></li>
+								</ul>
+
+							</div>
+                        </div>
+                        <div class="cat" id="cat5">
+                            <a href="#">
+                                <img src="../img/cat5.png" onmouseover="this.src='../img/cat5(on).png'" onmouseout="this.src='../img/cat5.png'">
+                            </a>
+							<div class="cat_detail" id="cat_list5">
+								<ul class="cat_list" >
+									<li><a href="./a33.html">생활건강</a></li>
+									<li><a href="./a34.html">수납정리용품</a></li>
+									<li><a href="./a35.html">욕실용품</a></li>
+									<li><a href="./a36.html">청소용품</a></li>
+									<li><a href="./a37.html">세탁용품</a></li>
+									<li><a href="./a38.html">세제/방향/살충</a></li>
+									<li><a href="./a39.html">화장지</a></li>
+									<li><a href="./a40.html">구강/세안/면도</a></li>
+								</ul>
+
+							</div>
+                        </div>
+                        <div class="cat" id="cat6">
+                            <a href="#">
+                                <img src="../img/cat6.png" onmouseover="this.src='../img/cat6(on).png'" onmouseout="this.src='../img/cat6.png'">
+                            </a>
+							<div class="cat_detail" id="cat_list6">
+								<ul class="cat_list" >
+									<li><a href="./a41.html">침실가구</a></li>
+									<li><a href="./a42.html">거실가구</a></li>
+									<li><a href="./a43.html">서재/사무용가구</a></li>
+									<li><a href="./a44.html">유아동가구</a></li>
+									<li><a href="./a45.html">리모델링가구</a></li>
+									<li><a href="./a46.html">커튼/블라인드</a></li>
+									<li><a href="./a47.html">침구</a></li>
+									<li><a href="./a48.html">조명</a></li>
+								</ul>
+
+							</div>
+                        </div>
+						<div class="cat" id="cat7">
+                            <a href="#">
+                                <img src="../img/cat7.png" onmouseover="this.src='../img/cat7(on).png'" onmouseout="this.src='../img/cat7.png'">
+                            </a>
+							<div class="cat_detail" id="cat_list7">
+								<ul class="cat_list" >
+									<li><a href="./a49.html">TV</a></li>
+									<li><a href="./a50.html">노트북</a></li>
+									<li><a href="./a51.html">냉장고</a></li>
+									<li><a href="./a52.html">카메라/주변기기</a></li>
+									<li><a href="./a53.html">모니터</a></li>
+									<li><a href="./a54.html">휴대폰</a></li>
+									<li><a href="./a55.html">세탁기/건조기</a></li>
+									<li><a href="./a56.html">영상가전</a></li>
+									<li><a href="./a57.html">데스크탑</a></li>
+									<li><a href="./a58.html">태블릿</a></li>
+									<li><a href="./a59.html">프린터/복합기</a></li>
+									<li><a href="./a60.html">게임</a></li>
+									<li><a href="./a61.html">PC부품</a></li>
+								</ul>
+
+							</div>
+                        </div>
+                        <div class="cat" id="cat_end">
+                            <a href="#">
+                              <img src="../img/cat8.png" onmouseover="this.src='../img/cat8(on).png'" onmouseout="this.src='../img/cat8.png'">  
+                            </a>
+							<div class="cat_detail" id="cat_list8">
+								<ul class="cat_list" >
+									<li><a href="./a62.html">도서/음반</a></li>
+									<li><a href="./a63.html">문구/사무용품</a></li>
+									<li><a href="./a64.html">화방용품</a></li>
+									<li><a href="./a65.html">악기</a></li>
+									<li><a href="./a66.html">취미</a></li>
+									<li><a href="./a67.html">꽃/원예</a></li>
+									<li><a href="./a68.html">강아지용품</a></li>
+									<li><a href="./a69.html">고양이용품</a></li>
+									<li><a href="./a70.html">조류용품</a></li>
+								</ul>
+
+							</div>
+                        </div>
+
+                    </div>
+					
+
+                </div>
+
+
+
+                <div id="mid">
+                	<lista>
+						<?php include "./sub2/aa30.html"; ?>
+                	</lista>
+					
+
+       			 </div>
+    
+
+    
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<html lang="ko"><head>
+    <title>구매등록</title>
+    <meta charset="UTF-8">
+
+	
+	
+	
+    <link type="text/css" rel="stylesheet" href="./css/itemmain.css?v=190924">
+
+    <link type="text/css" rel="stylesheet" href="./css/itembuywrite.css?v=190801">
+	
+       	<!-- name 카테고리 지역 name값 si,gu,dea,so 용 테스트 스크립트 -->
+	<script type="text/javascript" src="./sc/bu.js" charset="utf-8"></script>
+   </head>
+<body>
+
+
+
+            <div class="g_container" id="g_CONTENT">
+  
+                
+    <div class="g_content">
+        <div class="g_title_green">
+            삽니다 <span>등록</span>
+            <ul class="g_path">
+                <li>홈</li>
+                <li class="select">구매등록</li>
+            </ul>
+        </div>
+        <form name="frmBuy" id="frmBuy" method="post" action="./php/sellwrite.php">
+            
+                        <div class="g_subtitle first">물품정보</div>
+            <table class="g_green_table">
+                <colgroup>
+                    <col width="160">
+                    <col>
+                </colgroup>
+                <tbody><tr>
+                    <th>카테고리</th>
+                    <td>
+                        <span class="label-info">
+               <select name="id30" onchange="firstChange();" style="width:130px;">
+                                        <option value="">선택</option>
+										<option value="">의류/잡화</option>
+										<option value="">뷰티</option>
+										<option value="">레저/자동차</option>
+										<option value="">식품</option>
+										<option value="">생활/건강</option>
+										<option value="">가구/인테리어</option>
+										<option value="">디지털/가전/컴퓨터</option>
+										<option value="">도서/취미/반려동물</option>
+										
+                                    </select>
+				
+				 <select name="id31" style="width:140px;">
+                                        <option value="">-선택 없음-</option>
+                                    </select>
+            </span>
+                        
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <th>지역</th>
+                    <td> <span class="label-info">
+              <select name="id32" onchange="firstChange1();" style="width:120px;"  >
+                                        <option value="">선택</option>
+										<option value="">강원도</option>
+										<option value="">경기도</option>
+										<option value="">경상남도</option>
+										<option value="">경상북도</option>
+										<option value="">광주광역시</option>
+										<option value="">대구광역시</option>
+										<option value="">대전광역시</option>
+										<option value="">부산광역시</option>
+										<option value="">서울특별시</option>
+										<option value="">울산광역시</option>
+										<option value="">인천광역시</option>
+										<option value="">전라남도</option>
+										<option value="">전라북도</option>
+										<option value="">제주특별자치도</option>
+										<option value="">충청남도</option>
+										<option value="">충청북도</option>
+                                    </select>
+				
+				 <select name="id33" style="width:140px;"  >
+                                        <option value="">-선택 없음-</option>
+                                    </select>
+            </span>
+                    </td>
+                </tr>
+                </tbody>
+				
+				
+				
+				
+				<tbody id="d_template">
+                    <tr>
+        <th>물품제목</th>
+        <td>
+         <div class="unit_type" id="unit_type">
+                </div>
+	  <input type="text" class="g_text w100" name="id34" id="user_title" maxlength="40" >
+		</td>
+        </tr>
+
+    <tr>
+            <th>희망가격</th>
+        <td>
+            <input type="text" name="id36" id="user_price" maxlength="10" class="g_text f_right"> 원
+        </td>
+        </tr>               
+
+         <tr>
+        <th>내용</th>
+        <td>
+                       <textarea class="g_text w100" name="id37" id="user_title" rows="8"></textarea>
+           
+            
+        </td>
+        </tr>
+				</tbody>
+                              
+				</table>
+	
+                 <div class="g_btn_wrap">
+                <button type="submit" class="buy_reg" id="ok_btn">구매 등록</button>
+                <a href="" onclick="close1()" class="cancel_reg">등록 취소</a>
+            </div>
+
+        </form>
+        
+    
+</body></html>

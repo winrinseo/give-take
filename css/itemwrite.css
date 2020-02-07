@@ -1,0 +1,22 @@
+
+.g_blue_table td{ line-height:20px; }
+.g_blue_table input[type=text]:focus{ background-color:#FEFEEC; }
+
+.g_txtbtn{ display:inline-block; padding:0px 5px; border:1px solid #9B9B9B; background-color:#FCFCFC; font-size:11px; cursor:pointer; }
+.g_txtbtn:hover{ border-color:#1076D1; color:#1076D1; }
+.g_txtbtn.first_btn{ margin-left:10px }
+
+
+.g_btn_wrap .sell_reg{ display:inline-block; width:137px; height:46px; background:url(../img/btn_sell_ok.gif) no-repeat; text-indent:-9999px; vertical-align:middle; }
+.g_btn_wrap .sell_re_reg{ display:inline-block; width:137px; height:46px; background:url(../img/btn_sell_ok.gif) no-repeat; text-indent:-9999px; vertical-align:middle; }
+.g_btn_wrap .cancel_reg{ display:inline-block; width:137px; height:46px; background:url(../img/btn_cancel.gif) no-repeat; text-indent:-9999px; vertical-align:middle; }
+
+
+
+
+#paycoinLineageEventText {
+    background:#ff0000;
+    color:white;
+    margin-bottom:5px;
+    padding:0 5px;
+}

@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>회원가입</title>
+</head>
+	<link rel="stylesheet"  type="text/css" href="./css/button.css?3"> 
+<link rel="stylesheet"  type="text/css" href="./css/join_style.css">
+<script type="text/javascript" src="./sc/area.js" charset="utf-8"></script>
+<script type="text/javascript" src="./sc/sc.js" charset="utf-8"></script>
+<script>
+function check(){
+	if(!document.form.id2.value){
+		window.alert("아이디를 입력하세요");
+		document.form.id2.focus();
+		return false;
+		}
+		var a = document.form.id2.value;
+		window.open("../php/IDcheck.php?id=" + a , "idc" , ' width= 300, height = 32 ' , 'location=no');
+		
+		}
+</script>
+
+<body>
+<table width="750"  id=abb border="0" align="center" cellpadding="0" cellspacing="0">
+	
+	
+<form name="form" method="post" action="./php/join.php" id="form" onsubmit="return chk_frm()">
+	
+  <tbody><tr>
+    <td height="650" valign="top"><br>
+      <table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tbody>
+
+        <tr>
+          <td height="10" colspan="2"></td>
+        </tr>
+      </tbody></table>
+      <table width="738" border="0" align="center" cellpadding="5" cellspacing="4">
+        <tbody><tr>
+          <td width="720" height="120" colspan="3" align="center">
+            <table width="720" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="4f5053" style="filter:Alpha(Opacity=85)">
+<tbody>
+		<tr>
+                <td width="115" height="38" align="center"  class="login">이름</td>
+                <td width="544" bgcolor="080909"><input id="id1" name="id1" maxlength="15" value="" size="25" style="ime-mode:disabled;" >
+	  </td>
+              </tr>
+	
+	<tr>
+  <td width="115" height="38" align="center"  class="login">아이디</td>
+                <td width="544" bgcolor="080909"><input id="id2" name="id2" maxlength="15" value="" size="25" style="ime-mode:disabled;" >
+
+					<input type="button" onclick="check();" id = "join-btn" class="ui_btn_gray" value="중복확인"  />
+					
+	  </td>
+              </tr>
+                <tr>
+				
+				
+              </tr>
+                <tr>
+                  <td height="38" align="center"  class="login">비밀번호</td>
+                  <td bgcolor="080909"><input type="password"  name="id3" maxlength="15"  value="" size="25" id="id3"> </td>
+					
+              </tr>
+                <tr>
+                  <td height="38" align="center"  class="login">비밀번호 확인</td>
+                  <td bgcolor="080909"><input type="password" name="id4" maxlength="15" value="" size="25" id="id4"> </td>
+              </tr>
+                <tr>
+                  <td height="38" align="center"  class="login">이메일</td>
+            <td bgcolor="080909">
+                  <input name="id5" value="" size="15" maxlength="20" id="id5">
+                  </td>
+              </tr>
+
+                <tr>
+                  <td height="38" align="center"  class="login">휴대전화</td>
+                  <td bgcolor="080909"><input type="text" name="id6" size="16" id="id6"> </td>
+              </tr>
+                <tr>
+                  <td height="38" align="center" class="login">선호지역</td>
+                  <td bgcolor="080909"><select name="id7" onchange="firstChange1();" style="width:100px;"  id="id7">
+                                        <option value="">선택</option>
+										<option value="">강원도</option>
+										<option value="">경기도</option>
+										<option value="">경상남도</option>
+										<option value="">경상북도</option>
+										<option value="">광주광역시</option>
+										<option value="">대구광역시</option>
+										<option value="">대전광역시</option>
+										<option value="">부산광역시</option>
+										<option value="">서울특별시</option>
+										<option value="">울산광역시</option>
+										<option value="">인천광역시</option>
+										<option value="">전라남도</option>
+										<option value="">전라북도</option>
+										<option value="">제주도</option>
+										<option value="">충청남도</option>
+										<option value="">충청북도</option>
+                                    </select>
+                                    <select name="id8" style="width:140px;" id="id8">
+                                        <option value="">-선택 없음-</option>
+                                    </select>
+					</td>
+					
+              </tr>
+			  
+			                  <tr>
+                  <td height="38" align="center" class="login">선호 카테고리</td>
+                  <td bgcolor="080909">  <select name="id9" onchange="firstChange();" style="width:80px;" id="id9">
+                                        <option value="">선택</option>
+										<option value="">의류/잡화</option>
+										<option value="">뷰티</option>
+										<option value="">레저/자동차</option>
+										<option value="">식품</option>
+										<option value="">생활/건강</option>
+										<option value="">가구/인테리어</option>
+										<option value="">디지털/가전/컴퓨터</option>
+										<option value="">도서/취미/반려동물</option>
+										
+                                    </select>
+	
+                                    
+                               				 <select name="id10" style="width:140px;" id="id10">
+                                        <option value="">-선택 없음-</option>
+                                    </select>
+                                    
+					</td>
+					
+              </tr>
+                
+ 
+              
+            </tbody></table>
+  <br>
+
+
+
+   <button  type="button" onclick="aaa()" value="login" border="0" class="ui_btn_red">회원가입</button>
+			  <a href="./login.html"  id="join-btn2" class="ui_btn_red">취소</a> 
+                  
+        </tr>
+      </tbody></table>
+      </td>
+  </tr>
+
+</tbody></table>
+
+</form>
+</body>
+</html>

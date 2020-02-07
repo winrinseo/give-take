@@ -1,0 +1,34 @@
+﻿
+
+TD { font-size: 11px; color:#cccccc; line-height: 140%; FONT-FAMILY:  "µ¸¿ò", "µ¸¿òÃ¼", "±¼¸²", "±¼¸²Ã¼"}
+
+#abb {
+		margin-top : 150px;
+		}
+
+.login { Letter-spacing:0px;
+            Color:#bf8946; 
+            Font-size:11px;
+            font-weight:bold;
+          }
+
+
+@charset	"utf-8";
+
+
+
+.logo_intro { display: block; margin: 50px auto 0 auto; z-index: 99999; position: relative;}
+#join-btn {  cursor: pointer; vertical-align: middle; display: block; padding:0; opacity: 0.7;}
+#join-btn { width: 100px; height: 25px; line-height: 25px; text-align:center;  text-decoration:none; }
+#join-btn:hover {  bottom: 39px !important; top:inherit; opacity:1.0;}
+
+
+#join1-btn { width: 100px; height: 40px; line-height: 25px; text-align:center;  text-decoration:none; }
+#join1-btn:hover {  bottom: 39px !important; top:inherit; opacity:1.0;}
+
+
+#userid, #passwd,#id1,#id2,#id3,#id4,#id5,#id6,#id7,#id8,#id9,#id10 { border:none; width: 100%; width:200px; height: 30px; line-height: 43px; display: block; font-size: 14px; font-weight: bold; vertical-align: middle; margin-bottom: 5px; border-radius:4px;     background: 	#696969; color: #fff; transition:0.2s;     border: 1px solid #000;      box-shadow: inset 0 3px 5px rgba(0,0,0,0.4);
+text-align: center;
+ }
+/* 텍스트바 테두리,글자색 */
+ #userid:focus, #passwd:focus, #id1:focus,#id2:focus,#id3:focus,#id4:focus,#id5:focus,#id6:focus,#id7:focus,#id8:focus,#id9:focus,#id10:focus {  color: #0000FF; border: solid 1px #0000FF; outline: none;} 
